@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','UtamaController@index')->name('home');
+Route::get('/karyawan','UtamaController@create')->name('karyawan');
+Route::get('/tambah','UtamaController@input')->name('input');
+Route::get('/karyawan','UtamaController@store');
