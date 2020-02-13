@@ -10,7 +10,7 @@ class UtamaController extends Controller
     public function index(){
         return view('utama.landing');
     }
-
+    
     public function create(){
         $data = Karyawan::all();
         return view('karyawan.karyawan', compact('data'));
@@ -28,11 +28,35 @@ class UtamaController extends Controller
         ]);
 
         $karyawan = new Karyawan;
-        $karyawan->nama     = $request->nama;
-        $karyawan->alamat   = $request->alamat;
-        $karyawan->jabatan  = $request->jabatan;
+        $karyawan->nama = $request->nama;
+        $karyawan->alamat = $request->alamat;
+        $karyawan->jabatan = $request->jabatan;
 
         $karyawan->save();
+
+        return redirect('karyawan');
+    }
+
+    public function get_id($id){
+        $karyawan = Karyawan::find($id);
+
+        return view('update.update_karyawan', compact('karyawan'));
+    }
+
+    public function edit(Request $request, $id){
+        $karyawan = Karyawan::find($id);
+        $karyawan->nama = $request->nama;
+        $karyawan->alamat = $request->alamat;
+        $karyawan->jabatan = $request->jabatan;
+
+        $karyawan->save();
+
+        return redirect('karyawan');
+    }
+
+    public function hapus($id){
+        $data = Karyawan::find($id);
+        $data->delete();
 
         return redirect('karyawan');
     }

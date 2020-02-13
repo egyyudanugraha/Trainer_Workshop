@@ -1,6 +1,6 @@
 @extends('utama.index')
 
-@section('title', 'Halaman Data Karyawan')
+@section('title', 'Tambah Karyawan')
 
 @section('content')
 <div class="row">
@@ -8,15 +8,14 @@
         @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
-                @foreach($errors->all() as $errors)
-                <li>{{$errors}}</li>
+                @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
                 @endforeach
             </ul>
         </div>
-    </div>
     @endif
     <form action="/karyawan" method="post">
-        {{csrf_field()}}
+        {{ csrf_field() }}
         <div class="form-group">
             <label for="nama">Nama</label>
             <input type="text" class="form-control" id="nama" name="nama">
@@ -31,6 +30,7 @@
         </div>
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
+    </div>
 </div>
 
 @endsection

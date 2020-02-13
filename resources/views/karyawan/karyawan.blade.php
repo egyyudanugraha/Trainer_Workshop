@@ -15,6 +15,7 @@
                         <th scope="col">Nama</th>
                         <th scope="col">Alamat</th>
                         <th scope="col">Jabatan</th>
+                        <th scope="col" colspan="2">Operasi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,6 +25,14 @@
                         <td>{{ $tampil->nama }}</td>
                         <td>{{ $tampil->alamat }}</td>
                         <td>{{ $tampil->jabatan }}</td>
+                        <td><a href="/karyawan/edit/{{ $tampil->id }}" class="btn btn-primary">Edit</td>
+                        <td>
+                            <form action="/karyawan/{{ $tampil->id }}" method="post">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <button type="submit" value="hapus" class="btn btn-danger">Hapus</button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
